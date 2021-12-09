@@ -3,11 +3,15 @@ package API;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HardCodedExamplesOfAPI {
 
     /*
@@ -17,11 +21,11 @@ Then - result - verify response
      */
 
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
-    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Mzg5MjU5NzksImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTYzODk2OTE3OSwidXNlcklkIjoiMzIyMCJ9.xj6ZEwwgw4XBkZSGd6FjKzaC1kplxhof7ocXtconfrU";
-static String employee_id;
+    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzkwMTAyODMsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTYzOTA1MzQ4MywidXNlcklkIjoiMzIyMCJ9.HryoXinnb5LtP0SEAjbl4g1V4rPs97_C5rJ3xPMPv1Y";
+    static String employee_id;
 
 @Test
-public void getDetailsOfOneEmployee(){
+public void dgetDetailsOfOneEmployee(){
     //rest assured consider baseurl as baseuri
     //given
    RequestSpecification preparedRequest = given().header("Authorization", token)
@@ -36,8 +40,7 @@ public void getDetailsOfOneEmployee(){
 }
 
 @Test
-public void createEmployee(){
-
+public void acreateEmployee(){
     //given
    RequestSpecification preparedRequest = given().header("Authorization", token)
             .header("Content-Type", "application/json").body("{\n" +
@@ -66,6 +69,42 @@ public void createEmployee(){
     response.then().assertThat().body("Message", equalTo("Employee Created"));
     response.then().assertThat().header("Server", "Apache/2.4.39 (Win64) PHP/7.2.18");
 
+}
+
+@Test
+public void bgetCreatedEmployee() {
+    RequestSpecification preparedRequest = given().header("Authorization", token)
+            .header("Content-Type", "application/json").queryParam("employee_id", employee_id);
+
+            Response response = preparedRequest.when().get("/getOneEmployee.php");
+            response.prettyPrint();
+
+            String empID = response.jsonPath().getString("employee.employee_id");
+
+            boolean comparingEmpID = empID.contentEquals(employee_id);
+            Assert.assertTrue(comparingEmpID);
+
+            String lastName = response.jsonPath().getString("employee.emp_lastname");
+            Assert.assertTrue(lastName.contentEquals("Andru2"));
+}
+
+@Test
+public void cupdatedCreatedEmployee(){
+
+    RequestSpecification preparedRequest = given().header("Authorization", token)
+            .header("Content-Type", "application/json").body("{\n" +
+                    "  \"employee_id\": \"" + employee_id + "\",\n" +
+                    "  \"emp_firstname\": \"mikena\",\n" +
+                    "  \"emp_lastname\": \"bamena\",\n" +
+                    "  \"emp_middle_name\": \"shamena\",\n" +
+                    "  \"emp_gender\": \"F\",\n" +
+                    "  \"emp_birthday\": \"2004-10-12\",\n" +
+                    "  \"emp_status\": \"Active\",\n" +
+                    "  \"emp_job_title\": \"Database Administrator\"\n" +
+                    "}");
+
+    Response response = preparedRequest.when().put("/updateEmployee.php");
+    response.prettyPrint();
 }
 
 }
