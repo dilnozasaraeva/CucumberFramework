@@ -27,6 +27,5 @@ public class GenerateTokenSteps {
 
         token = "Bearer " + generatedTokenResponse.jsonPath().getString("token");
         System.out.println(token);
-
     }
 }
