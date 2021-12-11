@@ -98,4 +98,15 @@ public class APIWorkFlowSteps {
            String empId= response.body().jsonPath().getString(responseEmployeeID);
            Assert.assertEquals(empId, employee_id);
     }
+
+    @Given("a request is prepared for creating an employee with dynamic data {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    public void a_request_is_prepared_for_creating_an_employee_with_dynamic_data(String emp_firstname, String emp_lastname,
+                                                                                 String emp_middle_name, String emp_gender,
+                                                                                 String emp_birthday,
+                                                                                 String emp_status, String emp_job_title) {
+        request = given().header(APIConstants.Header_Content_type, APIConstants.Content_Type).
+                header(APIConstants.Header_Authorization, GenerateTokenSteps.token).body(APIPayloadConstants.payloadMoreDynamic
+                        (emp_firstname, emp_lastname, emp_middle_name, emp_gender, emp_birthday, emp_status, emp_job_title));
+        System.out.println(request);
+    }
 }

@@ -21,3 +21,8 @@ Feature: Syntax HRM API workflow
     |emp_firstname|emp_middle_name|emp_lastname|emp_birthday|emp_gender|emp_job_title|emp_status|
     |olzhars144   |elenam123      |Andru2      |1999-01-12  |Male         |API Tester   |Employee  |
 
+  @Dynamic
+  Scenario: Create dynamic scenario
+    Given a request is prepared for creating an employee with dynamic data "Abdul", "serge", "mike", "M", "2020-12-12", "Employee", "API Tester"
+
+
