@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 4218349100,
+              "duration": 3377089200,
               "status": "passed"
             },
             "line": 4,
@@ -24,7 +24,7 @@
         ]
       },
       {
-        "start_timestamp": "2021-12-11T16:20:32.936Z",
+        "start_timestamp": "2021-12-11T17:58:18.782Z",
         "line": 7,
         "name": "Creating an employee",
         "description": "",
@@ -34,7 +34,7 @@
         "steps": [
           {
             "result": {
-              "duration": 3012700,
+              "duration": 3004000,
               "status": "passed"
             },
             "line": 8,
@@ -46,7 +46,7 @@
           },
           {
             "result": {
-              "duration": 565639200,
+              "duration": 582968400,
               "status": "passed"
             },
             "line": 9,
@@ -58,7 +58,7 @@
           },
           {
             "result": {
-              "duration": 96310300,
+              "duration": 51003200,
               "status": "passed"
             },
             "line": 10,
@@ -76,7 +76,7 @@
           },
           {
             "result": {
-              "duration": 114010700,
+              "duration": 80984500,
               "status": "passed"
             },
             "line": 11,
@@ -98,7 +98,7 @@
           },
           {
             "result": {
-              "duration": 36979200,
+              "duration": 28993300,
               "status": "passed"
             },
             "line": 12,
@@ -112,6 +112,149 @@
               ],
               "location": "APISteps.APIWorkFlowSteps.the_employee_id_is_stored_as_a_global_variable_to_be_used_for_other_calls(java.lang.String)"
             },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@APIWorkFlow"
+          }
+        ]
+      },
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 556578500,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "a JWT is generated",
+            "match": {
+              "location": "APISteps.GenerateTokenSteps.a_jwt_is_generated()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2021-12-11T17:58:23.000Z",
+        "line": 15,
+        "name": "Retrieving created employee",
+        "description": "",
+        "id": "syntax-hrm-api-workflow;retrieving-created-employee",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 49196700,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "a request is prepared to retrieve the created employee",
+            "match": {
+              "location": "APISteps.APIWorkFlowSteps.a_request_is_prepared_to_retrieve_the_created_employee()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 587190300,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "a GET call is made to retrieve the created employee",
+            "match": {
+              "location": "APISteps.APIWorkFlowSteps.a_get_call_is_made_to_retrieve_the_created_employee()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1993200,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "the status code for this employee is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 37
+                }
+              ],
+              "location": "APISteps.APIWorkFlowSteps.the_status_code_for_this_employee_is(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 15026600,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "the retrieved employee ID \"employee.employee_id\" should match the globally stored employee id",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"employee.employee_id\"",
+                  "offset": 26
+                }
+              ],
+              "location": "APISteps.APIWorkFlowSteps.the_retrieved_employee_id_should_match_the_globally_stored_employee_id(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 34982500,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "the retrieved data at \"employee\" object matches the data used to create an employee with employee id \"employee.employee_id\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"employee\"",
+                  "offset": 22
+                },
+                {
+                  "val": "\"employee.employee_id\"",
+                  "offset": 101
+                }
+              ],
+              "location": "APISteps.APIWorkFlowSteps.the_retrieved_data_at_object_matches_the_data_used_to_create_an_employee_with_employee_id(java.lang.String,java.lang.String,io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "emp_firstname",
+                  "emp_middle_name",
+                  "emp_lastname",
+                  "emp_birthday",
+                  "emp_gender",
+                  "emp_job_title",
+                  "emp_status"
+                ]
+              },
+              {
+                "cells": [
+                  "olzhars144",
+                  "elenam123",
+                  "Andru2",
+                  "1999-01-12",
+                  "Male",
+                  "API Tester",
+                  "Employee"
+                ]
+              }
+            ],
             "keyword": "And "
           }
         ],
