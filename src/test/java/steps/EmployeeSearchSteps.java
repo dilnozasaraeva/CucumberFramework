@@ -1,13 +1,16 @@
 package steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.DashBoardPage;
 import pages.EmployeeListPage;
 import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
+import utils.GlobalVariables;
 
 public class EmployeeSearchSteps extends CommonMethods {
 
@@ -29,7 +32,8 @@ public class EmployeeSearchSteps extends CommonMethods {
     @When("user enters valid employee id")
     public void user_enters_valid_employee_id() {
         EmployeeListPage emp = new EmployeeListPage();
-        sendText(emp.idEmployee, "20119000");
+        GlobalVariables.empId="20119000";
+        sendText(emp.idEmployee, GlobalVariables.empId);
     }
 
     @When("click on search button")
@@ -40,7 +44,9 @@ public class EmployeeSearchSteps extends CommonMethods {
 
     @Then("user see employee information is displayed")
     public void user_see_employee_information_is_displayed() {
-        System.out.println("Info is displayed");
+        Assert.assertEquals(GlobalVariables.mapDataFromDb.get("emp_firstname") , GlobalVariables.firstName);
+        Assert.assertEquals(GlobalVariables.mapDataFromDb.get("emp_middle_name") , GlobalVariables.middleName);
+        Assert.assertEquals(GlobalVariables.mapDataFromDb.get("emp_lastname") , GlobalVariables.lastName);
     }
 
     @When("user enters valid employee name")

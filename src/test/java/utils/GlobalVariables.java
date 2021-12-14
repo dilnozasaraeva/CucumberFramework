@@ -13,4 +13,6 @@ public class GlobalVariables {
 	public static List<Map<String, String>> empListData;
 	public static Map<String, String> mapDataFromDb;
 
+
+	public static String userName;
 }

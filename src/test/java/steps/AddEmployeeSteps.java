@@ -63,7 +63,8 @@ public class AddEmployeeSteps extends CommonMethods {
     @When("user enters username password and confirmpassword")
     public void user_enters_username_password_and_confirmpassword() {
         AddEmployeePage addEmployeePage = new AddEmployeePage();
-        sendText(addEmployeePage.createUsername, "noor10272021234");
+        GlobalVariables.userName="noor10272021236";
+        sendText(addEmployeePage.createUsername, GlobalVariables.userName);
         sendText(addEmployeePage.createPassword, "Hum@nhrm123");
         sendText(addEmployeePage.rePassword, "Hum@nhrm123");
     }

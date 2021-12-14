@@ -75,5 +75,12 @@ Feature: Add Employee
   And employee added successfully
   Then query HRMS database
   And verify employee data is matched in ui and db
-  
+
+  @101
+  Scenario: third scenario of adding the employee
+    And user enters firstname middlename and lastname
+    And user selects checkbox
+    When user enters username password and confirmpassword
+    And user clicks on save button
+    Then verify from db
    
